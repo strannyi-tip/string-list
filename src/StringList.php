@@ -6,6 +6,7 @@ use ArrayAccess;
 use Countable;
 use Iterator;
 use StrannyiTip\Helper\Type\Exception\IndexIsNotInteger;
+use Stringable;
 
 /**
  * String list.
@@ -27,15 +28,27 @@ class StringList implements ArrayAccess, Iterator, Countable
     private int $position;
 
     /**
+     * Enumeration separator.
+     *
+     * @var string|null
+     */
+    private ?string $separator = null;
+
+    /**
+     * @const string Default enumeration separator for fromEnumerationString() method. used if no done
+     */
+    private const DEFAULT_ENUMERATION_SEPARATOR = ',';
+
+    /**
      * String list.
      *
-     * @param SimpleString|string ...$args String or string list
+     * @param Stringable|string ...$args String or string list
      */
-    public function __construct(SimpleString|string ...$args)
+    public function __construct(Stringable|string ...$args)
     {
         $this->position = 0;
         foreach ($args as $arg) {
-            $this->container[] = $arg instanceof SimpleString ? $arg : new SimpleString($arg);
+            $this->container[] = $arg instanceof Stringable ? $arg : new SimpleString((string)$arg);
         }
     }
 
@@ -52,7 +65,9 @@ class StringList implements ArrayAccess, Iterator, Countable
      */
     public function offsetGet($offset): ?SimpleString
     {
-        return $this->container[$offset] ?? null;
+        $founded_item = $this->container[$offset] ?? null;
+
+        return $founded_item instanceof SimpleString ? $founded_item : new SimpleString((string)$founded_item);
     }
 
     /**
@@ -124,5 +139,36 @@ class StringList implements ArrayAccess, Iterator, Countable
     #[\Override] public function count(): int
     {
         return \count($this->container);
+    }
+
+    /**
+     * Say use specific separator.
+     *
+     * @param Stringable|string $separator Separator
+     *
+     * @return StringList
+     */
+    public function useSeparator(Stringable|string $separator): StringList
+    {
+        $this->separator = (string)$separator;
+
+        return $this;
+    }
+
+    /**
+     * Fill container from enumerated string.
+     *
+     * @param Stringable|string $string Enumerated string e.g. "one, two, three"
+     *
+     * @return StringList
+     */
+    public function fromEnumerationString(Stringable|string $string): StringList
+    {
+        $container = \explode($this->separator ?? self::DEFAULT_ENUMERATION_SEPARATOR, $string);
+        foreach ($container as $item) {
+            $this->container[] = new SimpleString($item);
+        }
+
+        return $this;
     }
 }

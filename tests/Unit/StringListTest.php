@@ -75,4 +75,26 @@ class StringListTest extends Unit
         $this->expectException(IndexIsNotInteger::class);
         $list['a'] = 1;
     }
+
+    public function testUseSeparator()
+    {
+        $list = new StringList();
+        $list
+            ->useSeparator('|')
+            ->fromEnumerationString('one|two|three');
+        $this->assertCount(3, $list, 'Check for string separated');
+        $this->assertEquals('one', $list[0], 'Check for `one` item is present');
+        $this->assertEquals('two', $list[1], 'Check for `two` item is present');
+        $this->assertEquals('three', $list[2], 'Check for `three` item is present');
+    }
+
+    public function testFromEnumeration()
+    {
+        $list = new StringList();
+        $list->fromEnumerationString('one,two,three');
+        $this->assertCount(3, $list, 'Check for string separated');
+        $this->assertEquals('one', (string)$list[0], 'Check for `one` item is present');
+        $this->assertEquals('two', (string)$list[1], 'Check for `two` item is present');
+        $this->assertEquals('three', (string)$list[2], 'Check for `three` item is present');
+    }
 }
