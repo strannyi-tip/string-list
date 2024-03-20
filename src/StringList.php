@@ -28,7 +28,7 @@ class StringList implements ArrayAccess, Iterator, Countable
 
     /**
      * String list.
-     * 
+     *
      * @param SimpleString|string ...$args String or string list
      */
     public function __construct(SimpleString|string ...$args)
