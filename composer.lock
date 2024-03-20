@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "36533516efb9e249c85e9b840ea7a971",
+    "content-hash": "d1db2d6b2f0a9de27f67cca28151763d",
     "packages": [],
     "packages-dev": [
         {
@@ -2893,6 +2893,49 @@
                 }
             ],
             "time": "2024-03-11T06:16:26+00:00"
+        },
+        {
+            "name": "strannyi_tip/string",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/strannyi-tip/string.git",
+                "reference": "f387c3069d14f68c7b77ee81160ec7252cb04e1b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/strannyi-tip/string/zipball/f387c3069d14f68c7b77ee81160ec7252cb04e1b",
+                "reference": "f387c3069d14f68c7b77ee81160ec7252cb04e1b",
+                "shasum": ""
+            },
+            "require-dev": {
+                "codeception/codeception": "5.1.x-dev",
+                "codeception/module-asserts": "*",
+                "codeception/module-phpbrowser": "*"
+            },
+            "default-branch": true,
+            "type": "package",
+            "autoload": {
+                "psr-4": {
+                    "StrannyiTip\\Helper\\Type\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "strannyi-tip",
+                    "email": "0x00.dev@gmail.com"
+                }
+            ],
+            "description": "PHP String type helper",
+            "support": {
+                "issues": "https://github.com/strannyi-tip/string/issues",
+                "source": "https://github.com/strannyi-tip/string/tree/main"
+            },
+            "time": "2024-03-20T07:47:36+00:00"
         },
         {
             "name": "symfony/browser-kit",
