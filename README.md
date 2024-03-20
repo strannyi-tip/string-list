@@ -15,6 +15,19 @@ $list = new StringList(new SimpleString('string'));
 ```php
 $list = new StringList('one', 'two', new SimpleString('three'));
 ```
+```php
+$list = new StringList();
+$list
+  ->fromEnumerationString('one,two,three');
+echo $list[0];//one
+```
+```php
+$list = new StringList();
+$list
+  ->useSeparator('|')
+  ->fromEnumerationString('one|two|three');
+echo $list[1];//two
+```
 
 # Also
 > [!CAUTION]
