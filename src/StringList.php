@@ -13,17 +13,23 @@ use StrannyiTip\Helper\Type\Exception\IndexIsNotInteger;
 class StringList implements ArrayAccess, Iterator, Countable
 {
     /**
+     * Strings container.
+     *
      * @var array
      */
     private array $container;
 
     /**
+     * Iterator position.
+     *
      * @var int
      */
     private int $position;
 
     /**
-     * @param SimpleString|string ...$args
+     * String list.
+     * 
+     * @param SimpleString|string ...$args String or string list
      */
     public function __construct(SimpleString|string ...$args)
     {
@@ -72,32 +78,49 @@ class StringList implements ArrayAccess, Iterator, Countable
         unset($this->container[$offset]);
     }
 
-
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function current(): ?SimpleString
     {
         return $this->container[$this->position];
     }
 
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function next(): void
     {
         ++$this->position;
     }
 
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function key(): int
     {
         return $this->position;
     }
 
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function valid(): bool
     {
         return isset($this->container[$this->position]);
     }
 
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function rewind(): void
     {
         $this->position = 0;
     }
 
+    /**
+     * @inheritDoc
+     */
     #[\Override] public function count(): int
     {
         return \count($this->container);
