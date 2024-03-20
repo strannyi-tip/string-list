@@ -164,10 +164,7 @@ class StringList implements ArrayAccess, Iterator, Countable
      */
     public function fromEnumerationString(Stringable|string $string): StringList
     {
-        $container = \explode($this->separator ?? self::DEFAULT_ENUMERATION_SEPARATOR, $string);
-        foreach ($container as $item) {
-            $this->container[] = new SimpleString($item);
-        }
+        $this->container = \explode($this->separator ?? self::DEFAULT_ENUMERATION_SEPARATOR, $string);
 
         return $this;
     }
