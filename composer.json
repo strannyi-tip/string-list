@@ -1,0 +1,23 @@
+{
+    "name": "strannyi_tip/string-list",
+    "description": "Simple list of strings",
+    "type": "package",
+    "require-dev": {
+        "codeception/codeception": "5.1.x-dev",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-asserts": "*"
+    },
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "StrannyiTip\\Helper\\Type\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "strannyi-tip",
+            "email": "0x00.dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
