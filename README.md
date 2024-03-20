@@ -28,6 +28,10 @@ $list
   ->fromEnumerationString('one|two|three');
 echo $list[1];//two
 ```
+```php
+$list = new StringList();
+$list[] = new SomeStringableClass('string');
+```
 
 # Also
 > [!CAUTION]
